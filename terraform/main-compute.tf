@@ -82,3 +82,54 @@ resource "aws_security_group" "private" {
     }
   )
 }
+
+# COMPUTE userdata -------------------------------------------------------------
+# EC2 User Data
+data "local_file" "userdata" {
+  filename = "${path.module}/userdata.txt"
+}
+
+
+# COMPUTE NODES ----------------------------------------------------------------
+# PUBLIC
+resource "aws_instance" "public" {
+
+  ami                    = var.ami
+  instance_type          = var.instance_type
+  key_name               = aws_key_pair.keypair.id
+  subnet_id              = aws_subnet.public.id
+  vpc_security_group_ids = [aws_security_group.public.id]
+
+  associate_public_ip_address = true
+
+  user_data_base64            = base64encode(data.local_file.userdata.content)
+  user_data_replace_on_change = false
+
+  tags = merge(
+    module.tags.tags, {
+      Name = format("%s-ec2-%s", var.project_name, "frontend")
+    }
+  )
+}
+
+# COMPUTE NOTES ----------------------------------------------------------------
+# PRIVATE
+resource "aws_instance" "private" {
+
+  ami                    = var.ami
+  instance_type          = var.instance_type
+  key_name               = aws_key_pair.keypair.id
+  subnet_id              = aws_subnet.private.id
+  vpc_security_group_ids = [aws_security_group.private.id]
+
+  associate_public_ip_address = false
+
+  user_data_base64            = base64encode(data.local_file.userdata.content)
+  user_data_replace_on_change = false
+
+  tags = merge(
+    module.tags.tags, {
+      Name = format("%s-ec2-%s", var.project_name, "backend")
+    }
+  )
+}

@@ -19,7 +19,6 @@ The following resources are created, INCLUDING the custom AWS Resource Explorer 
 - Compute
   - Key Pairs
   - Security Groups
-#### TODO:
 - Compute Instances
   - t3.micro EC2 in public subnet
   - t3.micro EC2 in private subnet
