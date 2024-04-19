@@ -5,8 +5,11 @@
 This project creates a new VPC with public and private subnets, routing, and two EC2 nodes. 
 
 ### Resources created:
-TODO:
+
 - Resource Explorer View
+
+#### TODO:
+
 - Networking
     - VPC
     - VPC Internet Gateway
