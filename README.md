@@ -16,10 +16,11 @@ The following resources are created, INCLUDING the custom AWS Resource Explorer 
   - Private Subnet
   - VPC Internet Gateway
   - Route Table
+- Compute
+  - Key Pairs
 #### TODO:
 - Compute
   - Security Groups
-  - Key Pairs
 - Compute Instances
   - t3.micro EC2 in public subnet
   - t3.micro EC2 in private subnet
