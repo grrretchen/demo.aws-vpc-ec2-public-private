@@ -7,6 +7,12 @@ This project creates a new VPC with public and private subnets, routing, and two
 The following resources are created, INCLUDING the custom AWS Resource Explorer view:
 ![aws_resourceexplorer.png](aws_resourceexplorer.png)
 
+The project deploys from scratch in less than one minute:
+![terminal-output-create.png](terminal-output-create.png)
+
+And can be completely destroyed in about the same:
+![terminal-output-destroy.png](terminal-output-destroy.png)
+
 ### Resources created:
 
 - Resource Explorer View
