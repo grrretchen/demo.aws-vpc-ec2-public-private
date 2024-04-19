@@ -4,6 +4,9 @@
 
 This project creates a new VPC with public and private subnets, routing, and two EC2 nodes. 
 
+The project is inspired by the following hands-on lab, from ACloudGuru:
+![img_3.png](img_3.png)
+
 The following resources are created, INCLUDING the custom AWS Resource Explorer view:
 ![aws_resourceexplorer.png](aws_resourceexplorer.png)
 
