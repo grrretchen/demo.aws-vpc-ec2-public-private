@@ -5,12 +5,13 @@ resource "aws_vpc" "main" {
 
   tags = merge(
     module.tags.tags, {
-      Name = format("%s-%s", var.project_name, "vpc")
+      Name = format("%s-vpc", var.project_name)
     }
   )
 }
 
 
+# SUBNETS ---------------------------------------------------------------------
 # VPC Subnet
 resource "aws_subnet" "public" {
   vpc_id     = aws_vpc.main.id
@@ -20,7 +21,7 @@ resource "aws_subnet" "public" {
 
   tags = merge(
     module.tags.tags, {
-      Name = format("%s-%s", var.project_name, "public")
+      Name = format("%s-sn-%s", var.project_name, "public")
     }
   )
 }
@@ -34,20 +35,21 @@ resource "aws_subnet" "private" {
 
   tags = merge(
     module.tags.tags, {
-      Name = format("%s-%s", var.project_name, "private")
+      Name = format("%s-sn-%s", var.project_name, "private")
     }
   )
 }
 
+
+# INTERNET GATEWAY ------------------------------------------------------------
 # VPC Internet Gateway
 resource "aws_internet_gateway" "main" {
   tags = merge(
     module.tags.tags, {
-      Name = format("%s-%s", var.project_name, "gateway")
+      Name = format("%s-igw", var.project_name)
     }
   )
 }
-
 
 # VPC Internet Gateway Attachment
 resource "aws_internet_gateway_attachment" "main" {
@@ -55,26 +57,25 @@ resource "aws_internet_gateway_attachment" "main" {
   vpc_id              = aws_vpc.main.id
 }
 
-
 # VPC Route Table
 resource "aws_route_table" "public" {
   vpc_id = aws_vpc.main.id
 
   tags = merge(
     module.tags.tags, {
-      Name = format("%s-%s", var.project_name, "rt-public")
+      Name = format("%s-rt", var.project_name)
     }
   )
 }
 
 
+# ROUTE TABLES ----------------------------------------------------------------
 # VPC Route Table Route
 resource "aws_route" "public" {
   route_table_id         = aws_route_table.public.id
   destination_cidr_block = "0.0.0.0/0"
   gateway_id             = aws_internet_gateway.main.id
 }
-
 
 # VPC Route Table Association
 resource "aws_route_table_association" "public_sn" {

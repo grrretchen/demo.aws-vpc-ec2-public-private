@@ -1,3 +1,4 @@
+# KEYPAIRS --------------------------------------------------------------------
 # EC2 Key Pair
 data "local_file" "sshkey" {
   filename = "${path.module}/id_ssh.pub"
@@ -13,10 +14,15 @@ resource "aws_key_pair" "keypair" {
   )
 }
 
+
+# EXTERNAL LOOKUP for MY PUBLIC IP --------------------------------------------
 # my public IP
 data "external" "myipaddr" {
   program = ["bash", "-c", "curl -s 'https://ipinfo.io/json'"]
 }
+
+
+# SECURITY GROUPS -------------------------------------------------------------
 
 # VPC Security Group
 resource "aws_security_group" "public" {
@@ -49,7 +55,7 @@ resource "aws_security_group" "public" {
 
   tags = merge(
     module.tags.tags, {
-      Name = format("%s-%s", var.project_name, "public")
+      Name = format("%s-sg-%s", var.project_name, "public")
     }
   )
 }
@@ -78,7 +84,7 @@ resource "aws_security_group" "private" {
 
   tags = merge(
     module.tags.tags, {
-      Name = format("%s-%s", var.project_name, "private")
+      Name = format("%s-sg-%s", var.project_name, "private")
     }
   )
 }
