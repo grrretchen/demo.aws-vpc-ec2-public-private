@@ -54,3 +54,30 @@ resource "aws_internet_gateway_attachment" "main" {
   internet_gateway_id = aws_internet_gateway.main.id
   vpc_id              = aws_vpc.main.id
 }
+
+
+# VPC Route Table
+resource "aws_route_table" "public" {
+  vpc_id = aws_vpc.main.id
+
+  tags = merge(
+    module.tags.tags, {
+      Name = format("%s-%s", var.project_name, "rt-public")
+    }
+  )
+}
+
+
+# VPC Route Table Route
+resource "aws_route" "public" {
+  route_table_id         = aws_route_table.public.id
+  destination_cidr_block = "0.0.0.0/0"
+  gateway_id             = aws_internet_gateway.main.id
+}
+
+
+# VPC Route Table Association
+resource "aws_route_table_association" "public_sn" {
+  subnet_id      = aws_subnet.public.id
+  route_table_id = aws_route_table.public.id
+}

@@ -11,13 +11,15 @@ The following resources are created, INCLUDING the custom AWS Resource Explorer 
 
 - Resource Explorer View
 - Networking
-    - VPC
-    - Public Subnet
-    - Private Subnet
-    - VPC Internet Gateway
+  - VPC
+  - Public Subnet
+  - Private Subnet
+  - VPC Internet Gateway
+  - Route Table
 #### TODO:
-- Networking
-    - Route Table
+- Compute
+  - Security Groups
+  - Key Pairs
 - Compute Instances
-    - t3.micro EC2 in public subnet
-    - t3.micro EC2 in private subnet
+  - t3.micro EC2 in public subnet
+  - t3.micro EC2 in private subnet
