@@ -1,1 +1,7 @@
 /terraform/.terraform/
+/.idea/inspectionProfiles/profiles_settings.xml
+/.idea/.gitignore
+/.idea/demo.terraform-aws-vpc-public-private-dual-ec2.iml
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/vcs.xml
