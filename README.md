@@ -1,11 +1,10 @@
-# demo.aws-vpc-public-private-dual-ec2
+# demo.aws-vpc-public-private-ec2
 
 ---
 
 This project creates a new VPC with public and private subnets, routing, and two EC2 nodes. 
 
-The project is inspired by the following hands-on lab, from ACloudGuru:
-![img_3.png](img_3.png)
+![demo.aws-vpc-ec2-public-private.png](demo.aws-vpc-ec2-public-private.png)
 
 The following resources are created, INCLUDING the custom AWS Resource Explorer view:
 ![aws_resourceexplorer.png](aws_resourceexplorer.png)

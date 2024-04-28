@@ -113,7 +113,7 @@ resource "aws_instance" "public" {
 
   tags = merge(
     module.tags.tags, {
-      Name = format("%s-ec2-%s", var.project_name, "frontend")
+      Name = format("%s-ec2-%s", var.project_name, "webserver")
     }
   )
 }
@@ -135,7 +135,7 @@ resource "aws_instance" "private" {
 
   tags = merge(
     module.tags.tags, {
-      Name = format("%s-ec2-%s", var.project_name, "backend")
+      Name = format("%s-ec2-%s", var.project_name, "database")
     }
   )
 }
